@@ -20,11 +20,11 @@ jobs:
       run: 7z.exe e tshock.zip -oReferences "ServerPlugins/TShockAPI.dll" "Newtonsoft.Json.dll" "Mono.Data.Sqlite.dll" "MySql.Data.dll" "TerrariaServer.exe" "OTAPI.dll" -r
       shell: cmd
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1.1
     - name: Build
       run: msbuild $SLN_FILE /p:Configuration=Release;ReferencePath=<References>
     - name: Create Artifact
       uses: actions/upload-artifact@master
       with:
-        name: TemplatePlugin
-        path: TemplatePlugin\bin\Release\TemplatePlugin.dll
+        name: $PROJECT_NAME
+        path: $PROJECT_NAME\bin\Release\$PROJECT_NAME.dll
